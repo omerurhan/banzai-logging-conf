@@ -1,0 +1,19 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Flow
+metadata:
+  name: loki-flow-for-helmguest-app
+  namespace: tigera-operator
+spec:
+  filters:
+    - tag_normaliser: {}
+    - parser:
+        remove_key_name_field: true
+        reserve_data: true
+        parse:
+          type: apache2
+  match:
+    - select:
+        labels:
+          app: helm-guestbook
+  localOutputRefs:
+    - loki-output
