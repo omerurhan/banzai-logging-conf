@@ -1,0 +1,18 @@
+apiVersion: logging.banzaicloud.io/v1beta1
+kind: Output
+metadata:
+ name: loki-output
+ namespace: kube-system
+spec:
+ loki:
+   url: http://loki-gateway.logging.svc.cluster.local
+   tenant: "1"
+   #username:
+   #  value: admin
+   #password: 
+   #  value: password
+   configure_kubernetes_labels: true
+   buffer:
+     timekey: 1m
+     timekey_wait: 30s
+     timekey_use_utc: true
