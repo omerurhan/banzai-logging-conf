@@ -10,6 +10,8 @@ spec:
         reserve_data: true
         parse:
           type: json
+          time_key: time
+          time_format:  "%iso8601"
   match:
     - select:
         labels:
